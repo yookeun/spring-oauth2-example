@@ -2,7 +2,3 @@ security:
   user:
     name: user
     password: test
-
-spring:
-  datasource:
-    url: 

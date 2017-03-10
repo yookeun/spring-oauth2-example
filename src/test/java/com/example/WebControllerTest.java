@@ -46,18 +46,17 @@ public class WebControllerTest {
 								.param("username", "user")
 								.param("password", "test"))
 		.andDo(print()).andExpect(status().isOk());
+		//curl -u bar:foo http://localhost:8080/oauth/token -d  "grant_type=password&username=user&password=test"
 	}
 	
 	
 	@Test
 	public void 엑세스토큰_접근() throws Exception {
-		String accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3ByaW5nLWJvb3QtYXBwbGljYXRpb24iXSwidXNlcl9uYW"
-				+ "1lIjoidXNlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE0ODg5MzgzMzQsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNF"
-				+ "UiJdLCJqdGkiOiIzZjUyNjE3NC1kZWM3LTQyOTAtYWY2Ny1lOWU4N2U4NjAxMDgiLCJjbGllbnRfaWQiOiJiYXIifQ."
-				+ "hzcPXFQjjKvINNZwLyG33nbQPHptklPkWUMjcDcDU9U";
+		String accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3ByaW5nLWJvb3QtYXBwbGljYXRpb24iXSwidXNlcl9uYW1lIjoidXNlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE0ODkwMjQ0MjMsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiIzYjBmNTk2ZC1kMTI1LTQ1MTItYTlkNy00ZjY5OWI5NzMwMzAiLCJjbGllbnRfaWQiOiJiYXIifQ.svzhiuACjxXggJOqfackvjXjjQklSlqnFqZdpF6OAQY";
 		
 		mockMvc.perform(get("/simple")
 								.header("authorization", "bearer "+accessToken))
 		.andDo(print()).andExpect(status().isOk());
+		//curl -H "authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsic3ByaW5nLWJvb3QtYXBwbGljYXRpb24iXSwidXNlcl9uYW1lIjoidXNlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE0ODkwMzY0OTMsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiI2NGI0NjcyOC1lMDQ1LTQzMmUtYWU0OS1hN2Q0MzEzNDViMmUiLCJjbGllbnRfaWQiOiJiYXIifQ.RUDgAPta1NyFXNpVBDHsCeqh-xtHoFozlzBAbrv6TVE" http://localhost:8080/simple
 	}
 }
